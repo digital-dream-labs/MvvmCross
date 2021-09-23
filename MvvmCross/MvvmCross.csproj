@@ -84,7 +84,7 @@ This package contains the 'Core' libraries for MvvmCross</Description>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
     <Compile Include="Platforms\Android\**\*.cs" />
     <Compile Include="Platforms\Xamarin\**\*.cs" />
-    <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
+    <AndroidResource Include="Resources\**\*.xml" />
   
     <PackageReference Include="Xamarin.AndroidX.AppCompat" />
     <PackageReference Include="Xamarin.AndroidX.Fragment" />
