@@ -254,10 +254,24 @@ namespace MvvmCross.Platforms.Android.Binding.Views
 		}
 
         [MvxSetToNullAfterBinding]
-        public new IEnumerable<TItem> ItemsSource
-		{
+        public new IEnumerable ItemsSource
+        {
 			get => base.ItemsSource as IEnumerable<TItem>;
-			set => base.ItemsSource = value;
+			set {
+                // Allow the Binder to dispose the bindings
+                if (value == null)
+                {
+                    base.ItemsSource = value;
+                }
+                else if (value is IEnumerable<TItem> itemsSource)
+                {
+                    base.ItemsSource = itemsSource;
+                }
+                else
+                {
+                    throw new ArgumentException("value must be of type IEnumerable<TItem>");
+                }
+            }
 		}
-	}
+    }
 }
